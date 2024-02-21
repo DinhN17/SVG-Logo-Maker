@@ -1,8 +1,17 @@
 const inquirer = require('inquirer');
+// to limit 3 characters
+const MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt');
+inquirer.registerPrompt('maxlength-text', MaxLengthInputPrompt)
+
 const fs = require('fs');
 
-const makeLogo({text, textColor, shape, shapeColor,}) {
 
+function makeLogo({text, textColor, shape, shapeColor,}) {
+    
+    return `<svg width="300" height="200">
+  ${shape}
+  ${text}
+</svg>`;
 };
 
 function init() {
@@ -10,9 +19,10 @@ function init() {
     inquirer
         .prompt([
             {
-                type: 'input',
+                type: 'maxlength-text',
                 name: 'text',
                 message: 'Please provide 3 characters',
+                maxLength: 3,
             },
             {
                 type: 'input',
@@ -33,7 +43,7 @@ function init() {
         ])
         .then((answers) => {
             const logoSVG = makeLogo(answers);
-            fs.writeFile('logo.svg', logoSVG, (err) => {
+            fs.writeFile('./dist/logo.svg', logoSVG, (err) => {
                 err ? console.log(err) : console.log('Generated logo.svg');
             });
         });
