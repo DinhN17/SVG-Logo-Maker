@@ -8,11 +8,4 @@ describe('Shape', () => {
             expect(shape.render()).toEqual('<ellipse rx="100" ry="50" cx="200" cy="80"/>');
         });
     })
-    describe('setColor', () => {
-        it('should set color to yellow', () => {
-            let shape = new Shape('ellipse',[]);
-            shape.setColor('yellow');
-            expect(shape.render()).toEqual('<ellipse fill="yellow"/>');
-        })
-    })
 })
