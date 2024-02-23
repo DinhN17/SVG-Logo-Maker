@@ -12,10 +12,6 @@ const Triangle = require('./lib/triangle');
 const fs = require('fs');
 
 function makeLogo({text, textColor, shape, shapeColor,}) {
-//     <svg height="140" width="500" xmlns="http://www.w3.org/2000/svg">
-//   <ellipse cx="200" cy="80" rx="100" ry="50" fill="yellow" />
-//   Sorry, your browser does not support inline SVG.  
-// </svg>
     var logoShape, logoText = "";
     const r = 50;
     const fontSize = r;
@@ -26,15 +22,18 @@ function makeLogo({text, textColor, shape, shapeColor,}) {
     switch (shape) {
         case 'circle':
             logoShape = new Circle(r, x, y);
-            logoText = new Text(r, circleTextY, fontSize, 'middle', text);
+            //same x to shape to make sure text inside of shape
+            logoText = new Text(x, circleTextY, fontSize, 'middle', text); 
             
             break;
         case 'triangle':
             logoShape = new Triangle(`${2*r}, 0 ${4*r}, ${3.464*r} 0, ${3.464*r}`);
-            logoText = new Text(2*r, 0.68*3.464*r, fontSize, 'middle', text);
+            //same x to the top point of triangle to make sure text inside of shape
+            logoText = new Text(2*r, 0.68*3.464*r, fontSize, 'middle', text); 
             break;
         default:
             logoShape = new Square(2*r, 0, 0);
+            //same x=r is the middle of circle to make sure text inside of shape
             logoText = new Text(r, circleTextY, fontSize, 'middle', text);
             break;
     };
@@ -79,7 +78,7 @@ function init() {
         .then((answers) => {
             const logoSVG = makeLogo(answers);
             fs.writeFile(`./dist/${answers.shape}-logo.svg`, logoSVG, (err) => {
-                err ? console.log(err) : console.log('Generated logo.svg');
+                err ? console.log(err) : console.log(`Generated ./dist/${answers.shape}-logo.svg`);
             });
         });
 };
