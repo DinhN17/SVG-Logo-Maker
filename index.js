@@ -43,7 +43,7 @@ function makeLogo({text, textColor, shape, shapeColor,}) {
     logoShape.setColor(shapeColor);
     logoText.setColor(textColor);
 
-    return `<svg width="300" height="200">
+    return `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
   ${logoShape.render()}
   ${logoText.render()}
 </svg>`;
