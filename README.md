@@ -26,7 +26,7 @@ To run the unit tests, please use the command npm run test.
 
     ![Screenshot](assets/images/screenshot.png)
 
-[Demo video](https://watch.screencastify.com/v/KOR5RWmkNCAYODdt5jey)
+[Demo video](https://watch.screencastify.com/v/0hw8rNkyoktq31hJ9Zk8)
 
 
 ## Credits
